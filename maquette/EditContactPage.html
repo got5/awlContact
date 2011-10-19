@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+	
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="awl" />
+		<link rel="stylesheet" type="text/css" href="css/awlcontact.css" />
+		<link rel="stylesheet" type="text/css" href="css/cupertino/jquery-ui-1.8.16.custom.css" />
+	</head>
+	
+	<body>
+		<div id="header">
+			<a href="WelcomePage">Accueil</a> | 
+			<a href="ListContactPage">Liste des contacts</a> |
+			<a href="EditContactPage">Créer un contact</a>
+		</div>
+
+		<div id="content">
+			<div id="contacts">
+				<div class="contact">
+					<form>
+						<table align="center" cellspacing="5">
+							<tr>
+								<td>Prénom :</td>
+								<td><input  type="text" /></td>
+							</tr>
+	
+							<tr>
+								<td>Nom : </td>
+								<td><input  type="text" /></td>
+							</tr>
+							<tr>
+								<td>Date de naissance : </td>
+								<td><input  type="text" /></td>
+							</tr>
+							
+							<tr>
+								<td>Email : </td>
+								<td><input  type="text" /></td>
+							</tr>
+													
+							<tr>
+								<td><input  type="reset" value="Annuler" class="button" /></td>
+								<td><input  type="submit" value="Valider" class="button" /></td>
+							</tr>
+						</table>
+						<div id="errorsDiv" class="innerError"/>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer">
+			<p id="legal"><a href="http://www.atoswordline.com/">Atos Wordline</a> Copyright&copy; 2011</p>
+		</div>
+	</body>
+</html>
