@@ -1,0 +1,37 @@
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+			<div id="contacts">
+				<div class="contact">
+					<form  t:type="Form" t:id="editForm" >
+						<table align="center" cellspacing="5">
+							<tr>
+								<td>Prénom :</td>
+								<td><input t:type="TextField" t:id="prenom" t:validate="required" value="edit.prenom" type="text" /></td>
+							</tr>
+	
+							<tr>
+								<td>Nom : </td>
+								<td><input t:type="TextField" t:id="nom" t:validate="required" value="edit.nom" type="text" /></td>
+							</tr>
+							<tr>
+								<td>Date de naissance : </td>
+								<td><input t:type="DateField" t:id="datenaissance" t:validate="required" value="edit.datenaissance" type="text" /></td>
+							</tr>
+							
+							<tr>
+								<td>Email : </td>
+								<td><input t:type="TextField" t:validate="email,required" t:id="email" value="edit.email" type="text" /></td>
+							</tr>
+													
+							<tr>
+								<td>
+								<t:ActionLink t:id="Cancel">
+								<input  type="reset" value="Annuler" class="button" /></t:ActionLink>
+								</td>
+								<td><input  type="submit" value="Valider" class="button" /></td>
+							</tr>
+						</table>
+						<div id="errorsDiv" t:type="errors"/>
+					</form>
+				</div>
+			</div>
+</html>

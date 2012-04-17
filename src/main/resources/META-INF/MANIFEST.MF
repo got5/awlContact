@@ -1,2 +1,0 @@
-Tapestry-Module-Classes: com.atosworldline.tapestry.services.AwlContactModule
-
