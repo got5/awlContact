@@ -1,0 +1,54 @@
+<div id="contacts">
+	<div class="contact" id="formCreate">
+	${contact}
+		#{form @save()}
+		    <input type="hidden" name="contact.id" value="${_arg?.id}">
+		    
+		    <p class="field">
+		        <label for="name">Name:</label>
+		        <input type="text" class="required" id="name" name="contact.name" value="${_arg?.name}">
+		        <span class="error">${errors?.forKey('contact.name')}</span>
+		    </p>
+		
+		    <p class="field">
+		        <label for="firstname">First name:</label>
+		        <input type="text" class="required" id="firstname" name="contact.firstname" value="${_arg?.firstname}">
+		        <span class="error">${errors?.forKey('contact.firstname')}</span>
+		    </p>
+		
+		    <p class="field">
+		        <label for="birthdate">Birth date:</label>
+		        <input type="text" class="required" id="birthdate" name="contact.birthdate" value="${_arg?.birthdate?.format('yyyy-MM-dd')}">
+		        <span class="error">${errors?.forKey('contact.birthdate')}</span>
+		    </p>
+		
+		    <p class="field">
+		        <label for="email">Email:</label>
+		        <input type="text" id="email" name="contact.email" value="${_arg?.email}" class="required email">
+		        <span class="error">${errors?.forKey('contact.email')}</span>
+		    </p>
+		
+		    <p class="buttons">
+		     	<a class="button" href="@{list()}">Cancel</a> or <input type="submit" value="Save this contact" id="saveContact" class="button">
+		    </p>
+		    
+		    <script type="text/javascript" charset="${_response_encoding}">
+		        $("#birthdate").datepicker({dateFormat:'yy-mm-dd', showAnim:'fadeIn'})
+			</script>
+		#{/form}
+	</div>
+</div>
+
+
+<script type="text/javascript" charset="${_response_encoding}">
+$(document).ready(function(){
+	$("#formCreate form").validate({
+	  rules: {
+		  birthdate: {
+		      required: true,
+		      date: true
+		    }
+		  }
+		});
+});
+</script>

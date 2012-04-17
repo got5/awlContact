@@ -1,0 +1,24 @@
+02 avr. 2012 13:16:16,949 INFO  ~ Starting D:\play\samples-and-tests\zencontact_java
+02 avr. 2012 13:16:17,958 WARN  ~ You're running Play! in DEV mode
+02 avr. 2012 13:16:18,239 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+02 avr. 2012 13:16:22,965 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL
+02 avr. 2012 13:16:24,858 INFO  ~ Application 'Zencontact, by zenexity' is now started !
+02 avr. 2012 16:12:59,566 ERROR ~ schema export unsuccessful
+org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-149]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:327)
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.message.DbException.get(DbException.java:133)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1333)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1308)
+	at org.h2.jdbc.JdbcConnection.getAutoCommit(JdbcConnection.java:380)
+	at com.mchange.v2.c3p0.impl.NewProxyConnection.getAutoCommit(NewProxyConnection.java:985)
+	at org.hibernate.tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.prepare(SuppliedConnectionProviderConnectionHelper.java:52)
+	at org.hibernate.tool.hbm2ddl.SchemaExport.execute(SchemaExport.java:263)
+	at org.hibernate.tool.hbm2ddl.SchemaExport.drop(SchemaExport.java:229)
+	at org.hibernate.impl.SessionFactoryImpl.close(SessionFactoryImpl.java:961)
+	at org.hibernate.ejb.EntityManagerFactoryImpl.close(EntityManagerFactoryImpl.java:127)
+	at play.db.jpa.JPAPlugin.onApplicationStop(JPAPlugin.java:299)
+	at play.plugins.PluginCollection.onApplicationStop(PluginCollection.java:492)
+	at play.Play.stop(Play.java:555)
+	at play.Play$1.run(Play.java:450)

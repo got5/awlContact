@@ -1,0 +1,109 @@
+#{extends 'main.html' /}
+#{set title:'List' /}
+#{set 'moreScripts'}
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.js" type="text/javascript" charset="${_response_encoding}"></script>
+ <script>
+        $(document).ready( function() {
+            oTable = $('#example').dataTable({"bJQueryUI": true, "bFilter": false, "bAutoWidth": true });
+        });
+</script>
+#{/set}
+
+<div id="contacts">
+	<div class="contact">
+		<table id="example">
+			<thead>
+				<tr>
+					<th class="drag"></th>
+					<th class="name">Name</th>
+					<th class="firstname">First name</th>
+					<th class="birthdate">Birth date</th>
+					<th class="email">Email</th>
+					<th class="edit"></th>
+				</tr>
+			</thead>
+			<tbody>
+			    #{list contacts, as:'contact'}
+			    <tr contactId="${contact.id}">
+			    	<td><img contactId="${contact.id}" class="draggable" contactId="${contact.id}" src="@{'/public/images/people.png'}"/></td>
+		   			<td id="name-${contact.id}">${contact.name}</td>
+		   			<td id="firstname-${contact.id}">${contact.firstname}</td>
+		   			<td id="birthdate-${contact.id}">${contact.birthdate?.format('yyyy-MM-dd')}</td>
+		   			<td id="email-${contact.id}">${contact.email}</td>
+		   			<td><a href="@{form(contact.id)}">&gt;</a></td>
+		   		</tr>
+			    #{/list}
+			</tbody>
+		</table>
+	</div>
+
+
+	#{form @save()}
+	<div class="t-beaneditor">
+		<p class="field">
+	        <label for="name">Name:</label>
+	        <input type="text" id="name" name="contact.name" class="required">
+	        <span class="error">${errors.forKey('contact.name')}</span>
+	    </p>
+	
+	    <p class="field">
+	        <label for="firstname">First name:</label>
+	        <input type="text" id="firstname" name="contact.firstname"  class="required">
+	        <span class="error">${errors.forKey('contact.firstname')}</span>
+	    </p>
+	    
+	    <p class="buttons">
+	     	<a class="button" href="@{list()}">Cancel</a> or <input type="submit" value="Save this contact" id="saveContact" class="button">
+	    </p>
+	</div>
+	#{/form}
+
+<br />
+<div id="createFast">
+#{create /}
+</div>
+</div>
+<script type="text/javascript" charset="${_response_encoding}">
+$(document).ready(function(){
+	$("#createFast form").validate();
+	
+	$("select[name='example_length']").bind("change", function(){
+		$('.draggable').draggable({ revert: "valid" });
+	});
+	$("#example_paginate a").bind("click", function(){
+		$('.draggable').draggable({ revert: "valid" });
+	});
+	
+	$('.draggable').draggable({ revert: "valid" });
+	$('#createFast').droppable();
+	$( '#createFast' ).bind( "drop", function(event, ui) {
+		var tr = ui.draggable.parent().parent();
+		$("#createFast input[name='contact.id']").val(tr.attr("contactid"));
+		$("#createFast input[name='contact.name']").val(tr.find("td:nth-child(2)").text());
+		$("#createFast input[name='contact.firstname']").val(tr.find("td:nth-child(3)").text());
+		$("#createFast input[name='contact.birthdate']").val(tr.find("td:nth-child(4)").text());
+		$("#createFast input[name='contact.email']").val(tr.find("td:nth-child(5)").text());
+	});
+	
+});
+    // In place edition
+    $(".contact td").editInPlace({
+        bg_over: 'transparent',
+        callback: function(el, n, o) {
+            var m = /([a-z]+)-(\d+)/.exec(el), data = {}
+            data['contact.id'] = m[2]
+            data['contact.' + m[1]] = n
+            
+            // Save result
+            $.ajax({
+                url: '@{save()}',
+                type: 'POST',
+                data: data,
+                success: function() {$('#' + el).html(n)},
+                error: function() {$('#' + el).html(o)}
+            })
+            
+            return true
+        }
+    })
+</script>

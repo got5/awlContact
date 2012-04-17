@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div id="contacts">
+	<div class="contact">
+		<table>
+			<tr>
+				<td width="229"><img src="@{'/public/images/atosworldline_logo.gif'}"/></td>
+				<td width="184"><img src="@{'/public/images/chtijug_logo.png'}"/></td>
+				<td width="185"><p><strong>Ch'ti JUG</strong><br/>
+					le groupe Java du nord de la France</p>
+				</td>
+			</tr>
+		</table>
+    	<span class="update">${now.format("EEEE',' MMMM dd',' yyyy")}</span>${now.format("hh'h' MM'mn' ss's'")}
+    </div>
+</div>
+
+<script type="text/javascript" charset="${_response_encoding}">
+    setInterval(function() {
+        $('#contacts').load('@{index()} .contact');
+    }, 1000)
+</script>
+
+
+
