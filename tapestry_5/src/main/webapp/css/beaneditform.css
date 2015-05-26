@@ -1,0 +1,30 @@
+DIV.t-beaneditor
+{
+
+display: block;
+background: white;
+border: 2px solid blue;
+padding: 2px;
+font-family: "Trebuchet MS", Arial, sans-serif;
+
+}
+
+DIV.t-beaneditor LABEL
+{
+
+width: 150px;
+display: block;
+float: left;
+text-align: left;
+clear: left;
+padding-right: 3px;
+
+}
+
+input.t-beaneditor-submit
+{
+
+position: relative;
+left: 150px;
+
+}

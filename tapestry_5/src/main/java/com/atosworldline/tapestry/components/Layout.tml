@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+	
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="awl" />
+		<link rel="stylesheet" type="text/css" href="${context:css/awlcontact.css}" />
+		<link rel="stylesheet" type="text/css" href="${context:css/cupertino/jquery-ui-1.8.16.custom.css}" />
+	</head>
+
+	<body> 
+	
+		<div id="header">
+			<a t:type="PageLink" page="WelcomePage" disabled="isDisabled('WelcomePage')" href="WelcomePage">Accueil</a> | 
+			<a t:type="PageLink" page="ListContactPage" disabled="isDisabled('ListContactPage')" href="ListContactPage">Liste des contacts</a> |
+			<a t:type="PageLink" page="EditContactPage" disabled="isDisabled('EditContactPage')" href="EditContactPage">Créer un contact</a> 
+		</div>
+		
+		<div id="content">
+			<t:body/>
+		</div>
+		
+		<div id="footer">
+			<p id="legal"><a href="http://www.atoswordline.com/">Atos Wordline</a> Copyright&copy; 2011</p>
+		</div>
+	 </body>
+
+</html>
