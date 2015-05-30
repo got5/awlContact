@@ -36,7 +36,7 @@ public class ListContactPage {
 	private ComponentResources resources;
 	
 	@Property
-	static private BeanModel contactGrid;
+	private BeanModel contactGrid;
 
 	@SetupRender
 	void SetupRender(){
