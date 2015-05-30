@@ -1,10 +1,10 @@
-<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
 			<div id="contacts">
 				<div class="contact">
 					<form  t:type="Form" t:id="editForm" >
 						<table align="center" cellspacing="5">
 							<tr>
-								<td>Prénom :</td>
+								<td>Pr&eacute;nom :</td>
 								<td><input t:type="TextField" t:id="prenom" t:validate="required" value="edit.prenom" type="text" /></td>
 							</tr>
 	
