@@ -12,7 +12,7 @@
     <url>http://www.myorganization.org</url>
 
     <properties>
-		<jsf-api.version>2.1</jsf-api.version>
+		<jsf-api.version>2.2.11</jsf-api.version>
 		<jsf-impl.version>2.2.11</jsf-impl.version>
 		<myfaces.version>2.2.8</myfaces.version>
 		<primefaces.version>5.2</primefaces.version>
@@ -88,26 +88,18 @@
 			<version>6.0</version>
 			<scope>provided</scope>
 		</dependency>
-		 
+		  
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+		
 		<!-- JSF Dependencies -->
-		<!-- <dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>${jsf-api.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-impl</artifactId>
-			<version>${jsf-impl.version}</version>
-			<scope>compile</scope>
-		</dependency> -->
+		
 		<dependency>  
 		    <groupId>org.primefaces.themes</groupId>  
 		    <artifactId>all-themes</artifactId>  
@@ -149,10 +141,6 @@
 					<artifactId>hsqldb</artifactId>
 					<groupId>hsqldb</groupId>
 				</exclusion>
-				<!-- <exclusion>
-					<artifactId>jandex</artifactId>
-					<groupId>org.jboss</groupId>
-				</exclusion> -->
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -178,7 +166,7 @@
 			<artifactId>hsqldb</artifactId>
 			<version>${hsqldb.version}</version>
 		</dependency>
-             
+
 	</dependencies>
 
 
