@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="awl" />
+		<title>#{messages['editcontact']}</title>
+	</h:head>
+
+	<body> 
+		
+		<ui:composition template="/template/layout.xhtml" >
+			<ui:define name="content"> 
+				<div id="edition">
+					<h:form>
+							<h:inputHidden value="#{editContactMB.bean.id}" />
+							
+							<h:panelGrid columns="4">
+								<h:outputLabel value="#{messages['firstname']}" for="name" />
+								<p:inputText id="name" value="#{editContactMB.bean.name}" 
+									required="true" label="#{messages['firstname']}" requiredMessage="#{messages['firstname_empty_error_message']}" /><br/>
+								<p:message for="name" />
+								
+								<h:outputLabel value="#{messages['lastname']}" for="lastName" />
+								<p:inputText id="lastName" value="#{editContactMB.bean.lastName}" 
+									required="true" label="#{messages['latsname']}" requiredMessage="#{messages['lastname_empty_error_message']}" /><br/>
+								<p:message for="lastName" />
+								
+								<h:outputLabel value="#{messages['birthday']}" for="birthDay" />
+								<p:calendar id="birthDay" 
+									value="#{editContactMB.bean.birthDay}" 
+									pattern="dd/MM/yyyy" 
+									mode="popup" 
+									showOn="button" 
+									required="true" 
+									requiredMessage="#{messages['birthday_empty_error_message']}"/>
+								 <p:message for="birthDay" />
+								<br/>
+								<h:outputLabel value="#{messages['email']}" for="email"  />
+								<p:inputText id="email"  value="#{editContactMB.bean.email}" 
+									required="true" label="#{messages['email']}" requiredMessage="#{messages['email_empty_error_message']}" >
+									<f:validateRegex pattern="#{messages['email_regexp']}" />	
+								</p:inputText> <br/>
+						    	<p:message for="email" />
+						    	
+						    	<f:facet name="footer">
+							    	<p:commandButton ajax="false" value="#{messages['save']}" action="#{editContactMB.save}">
+							    		<f:param name="id" value="#{editContactMB.bean.id}"></f:param>
+							    	</p:commandButton>
+							    	<p:commandButton ajax="false" value="#{messages['cancel']}" action="#{editContactMB.cancel}"/>
+						    	</f:facet>
+						
+						    </h:panelGrid>
+							
+							<div id="errorsDiv" class="innerError"/>
+						</h:form>
+					</div>
+			</ui:define>
+		</ui:composition>
+				
+	 </body>
+
+</html>

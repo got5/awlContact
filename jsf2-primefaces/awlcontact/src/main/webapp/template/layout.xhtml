@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
+	
+	<f:view locale="#{localeBean.locale}" />
+	
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="awl" />
+		<link rel="stylesheet" type="text/css" href="css/awlcontact.css" />
+	</h:head>
+
+	<h:body> 
+		<div id="menu">
+			<components:language />
+		</div>
+				
+	
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="/template/header.xhtml" />
+			</ui:insert>  
+		</div>
+		
+		<div id="content">
+			<div id="contacts">
+				<div class="contact">
+					<ui:insert name="content" />
+				</div>
+			</div>		
+		</div>
+		
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="/template/footer.xhtml" />
+			</ui:insert>
+		</div>
+	 </h:body>
+
+</html>
