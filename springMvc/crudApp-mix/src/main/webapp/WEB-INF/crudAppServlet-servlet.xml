@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd"
+>
+
+	<!-- declare static resources path -->
+	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
+	
+	<!--  declare bundles path -->
+	<bean 
+		id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+	>
+		<property name="basename">
+			<value>messages</value>
+		</property>
+	</bean>
+	
+	<!--  configure the view resolver -->
+	<bean id="viewResolver"
+	        class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	    <property name="prefix" value="/WEB-INF/jsp/"/>
+	    <property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!--  SPECIFIC -->
+	
+	<!--  Add the view name in the model -->
+	<mvc:interceptors>
+	    <bean class="org.wl.interceptors.ViewNameInModelInterceptor" />
+	</mvc:interceptors>
+
+ 	<!-- scan and use annotations -->
+    <context:component-scan base-package="org.wl.controller" />
+	    
+    <mvc:annotation-driven  />
+</beans>
+

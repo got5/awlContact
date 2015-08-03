@@ -9,3 +9,7 @@ src/main/java/com/atosworldline/tapestry/components/.tmp_WelcomePage.tml.67523~
 *.tmp
 *.lck
 *.log
+
+.gradle
+build
+target

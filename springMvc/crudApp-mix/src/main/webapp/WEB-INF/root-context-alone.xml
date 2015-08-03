@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc.xsd        
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd"
+>
+
+    <!-- Datasource -->  
+   <bean id="contactDS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+      <property name="url" value="jdbc:hsqldb:mem:crudapp" />
+      <property name="username" value="sa" />
+      <property name="password" value="" />
+   </bean>
+    
+    <!--  entity manager -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	    <property name="dataSource" ref="contactDS" />
+		<property name="packagesToScan" value="org.wl.orm" />
+	    <property name="jpaVendorAdapter">
+	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+	    </property>
+	    <property name="jpaProperties">
+	        <props>
+	        	<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+	            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+		        <prop key="hibernate.show_sql">true</prop>
+		        <prop key="hibernate.format_sql">true</prop>	            
+	        </props>
+	    </property>
+	</bean>
+
+    <!-- Transaction manager -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    	<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>	
+	
+	
+	<!-- exceptions -->
+   <bean id="persistenceExceptionTranslationPostProcessor"
+      class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	
+	<!-- CRUDAPP SERVLET CONTENT -->
+	<!-- declare static resources path -->
+	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
+	
+	<!--  declare bundles path -->
+	<bean 
+		id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+	>
+		<property name="basename">
+			<value>messages</value>
+		</property>
+	</bean>
+	
+	<!--  configure the view resolver -->
+	<bean id="viewResolver"
+	        class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	    <property name="prefix" value="/WEB-INF/jsp/"/>
+	    <property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!--  SPECIFIC -->
+	
+	<!--  Add the view name in the model -->
+	<mvc:interceptors>
+	    <bean class="org.wl.interceptors.ViewNameInModelInterceptor" />
+	</mvc:interceptors>
+	    
+    <mvc:annotation-driven  />	
+    
+    
+ 	<!-- scan and use annotations -->
+ 	<context:component-scan base-package="org.wl" /> 
+	
+</beans>
+
+

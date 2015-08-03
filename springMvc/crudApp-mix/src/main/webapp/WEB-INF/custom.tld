@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+
+  <description>custom lib</description>
+  <display-name>custom lib</display-name>
+  <tlib-version>1.0</tlib-version>
+  <short-name>wl</short-name>
+  <uri>http://org.wl/jsp/jtl/custom</uri>
+  
+  <tag>
+  	<description>Generates a list of links</description>
+    <name>menu-list</name>
+    <tag-class>custom.tag.MenuList</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+    	<description>an array of links</description>
+		<name>links</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+		<type>org.wl.beans.LinkDesc[]</type>
+    </attribute>
+    <attribute>
+    	<description>A class to apply on the list</description>
+    	<name>classes</name>
+    	<required>false</required>
+    	<rtexprvalue>true</rtexprvalue>
+    	<type>java.lang.String</type>
+    </attribute>
+    <attribute>
+    	<description>A class to apply on the list</description>
+    	<name>currentView</name>
+    	<required>false</required>
+    	<rtexprvalue>true</rtexprvalue>
+    	<type>java.lang.String</type>
+    </attribute>    
+  </tag>
+</taglib>

@@ -1,0 +1,53 @@
+
+.main-menu{
+	width:50em;
+	margin: auto;
+}
+
+.main-menu li{
+	display: inline-block;
+	margin: 0.5em;
+}
+
+.main-menu li.special-element{
+	font-weight: bold;
+}
+
+.main-menu li a{
+	text-transform: uppercase;
+	
+}
+
+.main-menu li a, .main-menu li a:visited {
+	color: blue;
+}
+
+.square{
+	display: block;
+	width: 40em;
+	margin: 3em auto;
+	border: solid 1px blue;
+}
+
+ul.square > li{
+	display: inline-block;
+	max-width: 30%;
+	margin: 1em;
+	vertical-align: middle;	
+}
+
+.square > table{
+	width: 100%;
+    text-align: center;
+    margin: 1em;	
+}
+
+label{
+	display: inline-block;
+	width: 7em;
+}
+
+.hidden{
+	display: none;
+}
+
