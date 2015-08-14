@@ -1,0 +1,5 @@
+/target/
+.settings
+db/awlcontact.lck
+db/awlcontact.log
+deployments/

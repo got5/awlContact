@@ -1,0 +1,31 @@
+
+Les plus:
+
+1) Flexible et "fourni": nombreuses fonctionalités paramétrables, des détails ici:
+http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html
+2) Peu intrusif (Spring en général), 
+ -> facilite le portage vers les frameworks pour lesquels spring peut être utilisé (jsf notamment)
+ -> différentes techno pour la vue: JSP, jstl, tyles, freemarker, velocity.
+ 	JSP vs Thymeleaf (http://www.thymeleaf.org/doc/articles/thvsjsp.html), 
+ 	je dirais que ca se vaut: standard = custom jsp tags, thymeleef = langage spécifique
+ 	Thymeleef insiste sur 2 choses dans la comparaison: code plus proche d'html (idem tapestry notation infixée),
+ 	meilleur support de html5
+3) On retrouve des fonctionalités/concepts proches de ceux utilisés avec tapestry, ce qui
+peut être intéressant dans le cadre de la rédaction d'une formation, permettant de faire des ponts
+avec Tapestry (pour ceux qui connaissent déjà):
+	* data binding / validation
+	* Scope des variables (flash, requête, session)
+	* preprocessors / postprocessors -> même principe que les filtres
+
+Autres concepts intéressants:
+-> Heritage des application context: on pourrait (sdco) fournir un application context de base, dont toute application
+   spring mvc pourrait bénéficier, hériter, et overrider au besoin. Ex: Un bean contient des utilitaires pour le paiement, des confs jndi et jdbc pour jboss et une dbb, etc...
+-> Dans le même principe, certains beans permettant d'agir sur l'application sont définis par défaut dans MVC, et sont configurables.
+   On peut donc les reconfigurer dans notre web application context: typiquement, modifier la manière dont une vue est résolue
+-> Gestion de comportements particuliers en cas d'erreur (exception handlers que l'on declare WAC)
+
+
+Les moins:
+1) Attention au refactoring, l'utilisation d'url "en dur" ne facilite pas toujours les modifications (l'url se retrouve dans les annotations, dans les vues, éventuellement dans les classes si on souhaite avoir une config vue/url par exemple...)
+2) Flexible c'est bien, mais si 50 personnes codent chacunes à leur façon, ca risque de diverger rapidement si une méthodo n'est pas bien définie (ou autre outil type yeoman)
+3) L'utilisation des jsps pour les vues à ses limites. Utilisation du tag <form:input> fourni par spring ne permet pas d'utiliser un autre type que "text"... -> on peut toujours faire ses propres tags mais c'est dommage.
