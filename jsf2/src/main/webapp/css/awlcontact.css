@@ -1,0 +1,122 @@
+body {
+	margin: 0;
+	padding: 0;
+	color: #0075ad;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+	margin-bottom: 20px;
+	letter-spacing: -1px;
+	font-size: 20px;
+	color: #b53333;
+}
+
+h3 {
+	margin: 30px 0 15px 0;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #D76666;
+}
+
+body a {
+	font-size: 18px;
+	font-weight: bold;
+	color: #0075ad;
+	text-decoration: none;
+}
+
+body a:active {
+	text-decoration: none;
+}
+
+body a:hover {
+	TEXT-DECORATION: underline;
+	COLOR: #FF8000
+}
+
+.button {
+	border: 1px solid #999;
+	background-color: #f1f1f1;
+	color: #000;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#header {
+	width: 700px;
+	height: 84px;
+	margin: 0 auto;
+	padding: 20px 0px 0px 0px;
+	text-align: center;
+	}
+
+
+#header span {
+	font-size: 18px;
+	font-weight: bold;
+	color: #DBACAC;
+}
+
+#menu {
+	padding: 0px 20px 0px 0px;
+}
+
+/* Content */
+
+#content {
+	width: 900px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#edition {
+	text-align: left;	
+}
+
+#edition table {
+	margin: 0px auto;
+}
+
+#contacts {
+	width: 900px;
+}
+
+#contacts .contact {
+	margin: 0 0 20px 0;
+	padding: 20px 20px 20px 20px;
+	border: 1px solid #0075ad;
+	background: #FFFFFF url(../images/img09.gif) no-repeat center top;
+}
+
+.rich_datatable{
+	margin :0 auto;
+	width:100%;
+}
+
+#footer {
+	clear: both;
+	width: 580px;
+	margin: 0 auto;
+	padding: 20px 0;
+	font-size: 12px;
+	color: #0075ad;
+}
+
+#footer p {
+	margin: 0;
+	text-align: center;
+	line-height: normal;
+}

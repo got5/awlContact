@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" >
+	
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="awl" />
+		<title>#{messages['editcontact']}</title>
+	</h:head>
+
+	<body> 
+		
+		<ui:composition template="/template/layout.xhtml" >
+			<ui:define name="content"> 
+				<div id="edition">
+					<h:form>
+							<h:inputHidden value="#{editContactMB.bean.id}" />
+							
+							<h:panelGrid columns="4">
+								<h:outputLabel value="#{messages['firstname']}" for="name" />
+								<h:inputText id="name" value="#{editContactMB.bean.name}" 
+									required="true" label="#{messages['firstname']}" requiredMessage="#{messages['firstname_empty_error_message']}" /><br/>
+								<rich:message for="name" />
+								
+								<h:outputLabel value="#{messages['lastname']}" for="lastName" />
+								<h:inputText id="lastName" value="#{editContactMB.bean.lastName}" 
+									required="true" label="#{messages['lastname']}" requiredMessage="#{messages['lastname_empty_error_message']}" /><br/>
+								<rich:message for="lastName" />
+								
+								<h:outputLabel value="#{messages['birthday']}" for="birthDay" />
+								
+								<a4j:outputPanel layout="block">
+					                <rich:calendar value="#{editContactMB.bean.birthDay}" id="birthDay" locale="#{localeBean.locale}"
+					                    popup="true" datePattern="dd/MM/yyyy"
+					                    showApplyButton="false" 
+					                    cellWidth="24px" cellHeight="22px" style="width:200px" 
+					                    required="true" 
+										requiredMessage="#{messages['birthday_empty_error_message']}">
+					                </rich:calendar>
+					            </a4j:outputPanel>
+								<rich:message for="birthDay" />
+								<br/>
+								<h:outputLabel value="#{messages['email']}" for="email"  />
+								<h:inputText  id="email"  value="#{editContactMB.bean.email}" 
+									required="true" label="#{messages['email']}" requiredMessage="#{messages['email_empty_error_message']}" >
+									<f:validateRegex pattern="#{messages['email_regexp']}" />	
+								</h:inputText > <br/>
+						    	<rich:message for="email" />
+						    	
+						    	<f:facet name="footer">
+							    	<a4j:commandButton ajax="false" value="#{messages['save']}" action="#{editContactMB.save}">
+							    		<f:param name="id" value="#{editContactMB.bean.id}"></f:param>
+							    	</a4j:commandButton>
+							    	<a4j:commandButton ajax="false" value="#{messages['cancel']}" action="#{editContactMB.cancel}"/>
+						    	</f:facet>
+						
+						    </h:panelGrid>
+							
+							<div id="errorsDiv" class="innerError"/>
+						</h:form>
+					</div>
+			</ui:define>
+		</ui:composition>
+				
+	 </body>
+
+</html>
