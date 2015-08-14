@@ -1,7 +1,7 @@
-JSF 2 Primefaces AwlContact
+JSF 2 AwlContact
 ===========================
 
-A JSF 2 implementation of the AwlContact project (a simple CRUD webapp) based on Primefaces library 
+A JSF 2 implementation of the AwlContact project (a simple CRUD webapp) based on Primefaces anf Richfaces library 
 
 Stack
 -----
@@ -26,4 +26,4 @@ Run
 - Myfaces : "__mvn jetty:run -Pmyfaces__" (default)
 - Mojarra : "__mvn jetty:run -Pmojarra__"
 
-then go to : http://localhost:8080/awlcontact/  and click on the top left link to choose the UI implementation, between "primefaces" (default) and "richfaces". 
+then go to : "http://localhost:8080/awlcontact/"  and click on the top left link to choose the UI implementation, between "[Primefaces](http://www.primefaces.org)" (default) and "[Richfaces](http://www.richfaces.jboss.org)". 
