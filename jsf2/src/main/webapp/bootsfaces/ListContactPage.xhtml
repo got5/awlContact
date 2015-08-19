@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui" >
+	
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="awl" />
+		<title>#{messages['listcontacts']}</title>
+	</h:head>
+
+	<body> 
+		
+		<ui:composition template="/template/layout.xhtml" >
+			<ui:define name="content">
+				<h:form>
+				  	<p:growl id="msgs" autoUpdate="true" globalOnly="true" ></p:growl>
+					   
+				   <b:row styleClass="show-grid">
+				   		<b:column span="18">
+			                <p:dataTable value="#{contactMB.contacts}" var="contact" id="contacts" resizableColumns="true" editable="true" editMode="cell" widgetVar="cellCars" >
+							  	<f:facet name="header">
+			           				#{messages['cellEditing']}
+			       				</f:facet>
+			 
+			 				    <p:ajax event="cellEdit" listener="#{contactMB.onCellEdit}" />
+			 				    
+							  	<p:column headerText="#{messages['id']}" width="10%" >
+							  	 	<p:outputLabel value="#{contact.id}"></p:outputLabel>
+							  	</p:column>
+							  	<p:column headerText="#{messages['firstname']}" width="15%" >
+							  		<p:cellEditor>
+							  			<f:facet name="output"><h:outputText value="#{contact.name}" /></f:facet>
+			               				<f:facet name="input"><p:inputText value="#{contact.name}" label="#{messages['firstname']}"/></f:facet>
+							  		</p:cellEditor>
+							  	</p:column>
+							  	<p:column headerText="#{messages['lastname']}" width="15%" >
+							  		<p:cellEditor>
+							  			<f:facet name="output"><h:outputText value="#{contact.lastName}" /></f:facet>
+			               				<f:facet name="input"><p:inputText value="#{contact.lastName}" label="#{messages['lastname']}"/></f:facet>
+							  		</p:cellEditor>
+							  	</p:column>
+							  	<p:column headerText="#{messages['birthday']}" width="30%" >
+							  		<p:cellEditor>
+							  			<f:facet name="output"><h:outputText value="#{contact.birthDay}" /></f:facet>
+			               				<f:facet name="input">
+			               					<p:inputText value="#{contact.birthDay}" label="#{messages['birthday']}">
+			               						<f:convertDateTime pattern="#{messages['dateformat']}" />
+			               					</p:inputText>
+			               				</f:facet>
+							  		</p:cellEditor>
+							  	</p:column>
+							  	<p:column headerText="#{messages['email']}" width="10%" >
+							  		<p:cellEditor>
+							  			<f:facet name="output"><h:outputText value="#{contact.email}" /></f:facet>
+			               				<f:facet name="input">
+			               					<p:inputText value="#{contact.email}" label="#{messages['email']}">
+			               						<f:validateRegex pattern="#{messages['email_regexp']}" />
+			               					</p:inputText>
+			               				</f:facet>
+							  		</p:cellEditor>
+							  	</p:column>
+							  	<p:column width="25%">
+							  		<b:commandButton action="#{contactMB.edit}" value="#{messages['edit']}" look="primary" size="lg" >
+							  			<f:param name="id" value="#{contact.id}"></f:param>
+							  		</b:commandButton>
+							  	
+							  		<b:commandButton ajax="true" value="#{messages['delete']}" look="primary"  onclick="$('.modalPseudoClass').modal();" size="lg">
+							  		  <!-- setting the object's id to delete -->	
+							  		 <f:setPropertyActionListener target="#{deleteContactMB.id}" value="#{contact.id}" />			
+							  		</b:commandButton>
+							  	</p:column>
+							  	
+							  </p:dataTable>
+						  </b:column>
+					  </b:row>
+				  <p></p>
+				  <p:commandButton action="#{contactMB.add}" ajax="false" value="#{messages['add_contact']}"></p:commandButton>
+				  
+				  <b:modal 
+				  		id="confirmDialog" 
+				  		title="#{messages['delete_contact']}"  
+				  		styleClass="modalPseudoClass">
+         			<p>#{messages['ask_delete_contact']}</p>
+					<b:commandButton id="confirm" value="#{messages['yes']}"  actionListener="#{deleteContactMB.remove}" update="contacts" oncomplete="$('.modalPseudoClass').modal('hide');"  look="primary"   />
+					<b:commandButton id="decline" value="#{messages['no']}" onclick="$('.modalPseudoClass').modal('hide');" look="primary"   />
+				  </b:modal>
+				  
+			  </h:form>
+			</ui:define>
+		</ui:composition>
+				
+	 </body>
+
+</html>

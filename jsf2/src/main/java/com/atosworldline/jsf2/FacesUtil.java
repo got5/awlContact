@@ -14,6 +14,7 @@ public class FacesUtil {
 	
 	private Context primefacesContext = Context.PRIMEFACES;
 	private Context richfacesContext = Context.RICHFACES;
+	private Context bootsfacesContext = Context.BOOTSFACES;
 
 	public Context getPrimeFacesContext() {
         return primefacesContext;
@@ -21,6 +22,10 @@ public class FacesUtil {
     
 	public Context getRichFacesContext() {
         return richfacesContext;
+    }
+    
+	public Context getBootsFacesContext() {
+        return bootsfacesContext;
     }
     
     public static void addError(String message) {

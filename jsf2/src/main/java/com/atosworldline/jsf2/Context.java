@@ -3,8 +3,7 @@ package com.atosworldline.jsf2;
 
 
 public enum Context {
-	PRIMEFACES("primefaces"), 
-	RICHFACES("richfaces");
+	PRIMEFACES("primefaces"), RICHFACES("richfaces"), BOOTSFACES("bootsfaces");
 
 	private final String label;
 

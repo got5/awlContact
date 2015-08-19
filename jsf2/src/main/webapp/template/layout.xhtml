@@ -1,9 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:components="http://java.sun.com/jsf/composite/components">
+	xmlns:components="http://java.sun.com/jsf/composite/components"
+	xmlns:b="http://bootsfaces.net/ui" >
 	
 	<f:view locale="#{localeBean.locale}" />
 	
@@ -18,47 +20,55 @@
 	
 	
 	<h:body> 
-		<div id="menu">
-			<p>
-				<h:form>
+		 <b:container>
+         	
+         	<b:row>
+         		<b:column />
+         	</b:row>
+            
+            <b:row>
+           		<b:column span="2" >
+               		<div id="menu">
+               			<p><components:language /></p>
+               			<p><components:links contexts="primefaces,richfaces,bootsfaces"/></p>
+               		</div>
+               	</b:column>
+               	<b:column span="4" />
+               <b:column span="4" offset="0">
+					<div id="menu">
+						<div id="header">
+						<ui:insert name="header">
+							<ui:include src="../template/header.xhtml" />
+						</ui:insert>
+					</div>
+					</div>
+				</b:column>
 				
-					<h:commandLink value="#{messages['primefaces']}" action="#{sessionBean.redirect}" > 
-						<f:param name="context" value="#{facesUtil.primeFacesContext.label}"></f:param>
-						<f:param name="path" value="#{request.servletPath}"></f:param>
-					</h:commandLink>			
-					
-					| 
-					
-					<h:commandLink value="#{messages['richfaces']}" action="#{sessionBean.redirect}" > 
-						<f:param name="context" value="#{facesUtil.richFacesContext.label}"></f:param>
-						<f:param name="path" value="#{request.servletPath}"></f:param>
-					</h:commandLink>			
-					 
-				</h:form>	
-			</p>
-			
-			<components:language /> 
-		</div>
-			
-		<div id="header">
-			<ui:insert name="header">
-				<ui:include src="../template/header.xhtml" />
-			</ui:insert>  
-		</div>
+			</b:row>
 		
-		<div id="content">
-			<div id="contacts">
-				<div class="contact">
-					<ui:insert name="content" />
-				</div>
-			</div>		
-		</div>
+           <b:row>
+            	<b:column span="18">
+              		<div id="content">
+						<div id="contacts">
+							<div class="contact">
+								<ui:insert name="content" />
+							</div>
+						</div>		
+					</div>
+				</b:column>
+				
+		  	</b:row>
 		
-		<div id="footer">
-			<ui:insert name="footer">
-				<ui:include src="../template/footer.xhtml" />
-			</ui:insert>
-		</div>
+            <b:row>
+                <b:column span="18">
+                	<div id="footer">
+                		<ui:insert name="footer">
+							<ui:include src="../template/footer.xhtml" />
+						</ui:insert>
+					</div>
+				</b:column>
+			</b:row>
+		</b:container>
 	 </h:body>
 
 </html>
