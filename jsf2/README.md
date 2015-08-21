@@ -7,7 +7,7 @@ Stack
 -----
 
 - Web framework           : JSF 2 [Mojarra](https://javaserverfaces.java.net/) 2.2.11 | [MyFaces](https://myfaces.apache.org/) 2.2.8
-- Web component library   : [Primefaces](http://www.primefaces.org) 5.2 | [Richfaces](http://richfaces.jboss.org) 4.5.8.Final
+- Web component library   : [Primefaces](http://www.primefaces.org) 5.2 | [Richfaces](http://richfaces.jboss.org) 4.5.8.Final | [Bootsfaces](http://bootsfaces.net/) 0.6.6
 - IOC                     : [JBoss Weld CDI](http://weld.cdi-spec.org/) 2.2.14.Final
 - Persistence layer (JPA) : Hibernate 4.3.10.Final
 - Bean Validation         : validation-api-1.1.0.Final / Hibernate-validator 5.1.3.Final

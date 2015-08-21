@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="awl" />
+		<title>#{messages['welcome']}</title>
+	</h:head>
+
+	<h:body> 
+		<ui:composition template="/template/layout.xhtml" >
+			<ui:define name="content">
+				<h:form>
+			        <h:messages />
+			 
+			        <h2>Login Page</h2>
+			        <p>You can use "admin" and "secret" to login as an admin</p>
+			        <p>You can use "user" and "user" to login as a user.</p>
+			        <h:panelGrid columns="3">
+			 
+			            <h:outputLabel for="rememberMe" value="#{messages['username']}" />
+			            <b:inputText id="username" value="#{loginMB.username}" required="true" />
+			            <h:message for="username" />
+			 
+			            <h:outputLabel for="rememberMe" value="#{messages['password']}" />
+			            <b:inputSecret id="password" value="#{loginMB.password}"  />
+			            <h:message for="password" />
+			 
+			            <h:outputLabel for="rememberMe" value="#{messages['rememberme']}" />
+			            <b:selectBooleanCheckbox id="rememberMe" value="#{loginMB.rememberMe}" />
+			 
+			            <b:commandButton action="#{loginMB.authenticate()}" value="Login" look="primmary"/>
+			 
+			        </h:panelGrid>
+			    </h:form>
+			 </ui:define>
+		</ui:composition>
+	</h:body>
+</html>
