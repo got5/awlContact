@@ -25,13 +25,26 @@
 	<param-value>bootstrap</param-value> 
   </context-param>
   
+  <listener>
+    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+  </listener>
+  
+  <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+   </listener>
+    
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   
-  <servlet-mapping>
+  <filter>
+       <filter-name>ShiroFilter</filter-name>
+       <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+  </filter>
+    
+   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
@@ -41,9 +54,14 @@
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   
-  <listener>
-    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
-  </listener>
+    <filter-mapping>
+        <filter-name>ShiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
   
   <resource-env-ref>
     <description>Object factory for the CDI Bean Manager</description>
@@ -55,5 +73,10 @@
     <welcome-file>WelcomePage.xhtml</welcome-file>
   </welcome-file-list>
   
-  
+ 
+    <error-page>
+  	  <error-code>500</error-code>
+      <location>/Error.xhtml</location>
+  </error-page>
+    
 </web-app>

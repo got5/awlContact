@@ -74,6 +74,10 @@ body a:hover {
 	padding: 0px 20px 0px 0px;
 }
 
+#logout {
+	padding: 0px 20px 0px 0px;
+}
+
 /* Content */
 
 #content {

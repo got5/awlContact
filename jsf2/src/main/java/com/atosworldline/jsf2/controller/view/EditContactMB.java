@@ -9,11 +9,17 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+
 import com.atosworldline.jsf2.model.Contact;
 import com.atosworldline.jsf2.persistence.ContactDAO;
+import com.atosworldline.jsf2.qualifiers.ShiroSecured;
 
 @Named
 @RequestScoped
+@ShiroSecured
 public class EditContactMB implements Serializable{
 	
 	private static final long serialVersionUID = 5870423468328215602L;
@@ -45,6 +51,7 @@ public class EditContactMB implements Serializable{
 		this.bean = bean;
 	}
 	
+	@RequiresPermissions("edit")
 	public String save() {
 		if(id != null){
 			// update the managed bean

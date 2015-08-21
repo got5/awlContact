@@ -12,22 +12,20 @@ public class SessionBean {
 	private String rootUrl;
 
 	public String getRootUrl() {
-		if(null == rootUrl) return Context.PRIMEFACES.name();
+		if(null == rootUrl) return Context.PRIMEFACES.getLabel();
 		return rootUrl;
 	}
 
 	public void setRootUrl(String rootUrl) {
 		this.rootUrl = rootUrl;
+		redirect();
 	}
 
 	public String redirect() {
-		String context = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("context");
-		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		String path = req.getServletPath();
+		String path = FacesContext.getCurrentInstance().getViewRoot().getViewId();
 		String page = path.substring(path.lastIndexOf("/")+1);
-		String redirect = "/"+context+"/"+page+"?faces-redirect=true";
+		String redirect = "/"+this.rootUrl+"/"+page+"?faces-redirect=true";
 		FacesUtil.addSuccessMessage(redirect);
-		setRootUrl(context);
 		return redirect;
 	}
 	

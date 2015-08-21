@@ -11,15 +11,21 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.primefaces.event.CellEditEvent;
 
 import com.atosworldline.jsf2.FacesUtil;
 import com.atosworldline.jsf2.SessionBean;
 import com.atosworldline.jsf2.model.Contact;
 import com.atosworldline.jsf2.persistence.ContactDAO;
+import com.atosworldline.jsf2.qualifiers.ShiroSecured;
 
 @Named
 @RequestScoped
+@ShiroSecured
+@RequiresAuthentication
 public class ContactMB implements Serializable{
 
 	private static final long serialVersionUID = -1890125026548028469L;
@@ -47,20 +53,24 @@ public class ContactMB implements Serializable{
 		this.bean = bean;
 	}
 
+	@RequiresPermissions("edit")
 	public String save() {
 		contactDAO.persist(this.bean);
 		return "ListContactPage.xhtml?faces-redirect=true";
 	}
 
+	@RequiresPermissions("add")
 	public String add() {
 		return "EditContactPage.xhtml?faces-redirect=true";
 	}
 	
+	@RequiresPermissions("edit")
 	public String edit() {
 		String value = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
 		return "EditContactPage.xhtml?faces-redirect=true&id="+value;
 	}
 	
+	@RequiresPermissions("remove")
 	public String delete() {
 		String value = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
 		contactDAO.delete(Long.valueOf(value));
@@ -68,11 +78,13 @@ public class ContactMB implements Serializable{
 		return "ListContactPage.xhtml?faces-redirect=true";
 	}
 
+	@RequiresPermissions("remove")
 	public void remove() {
 		contactDAO.delete(idToDelete);
 		FacesUtil.addSuccessMessage("Deleted!");
 	}
 	
+	@RequiresPermissions("list")
 	public List<Contact> getContacts() {
 		return contactDAO.findAll();
 	}
@@ -89,6 +101,7 @@ public class ContactMB implements Serializable{
 		this.idToDelete = idToDelete;
 	}
 	
+	@RequiresPermissions("edit")
 	public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();

@@ -5,20 +5,17 @@
 	  xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:composite="http://java.sun.com/jsf/composite"
-      >
+      xmlns:composite="http://java.sun.com/jsf/composite">
  
     <composite:interface />
     
     <composite:implementation>
  		<h:form>
-			<h:panelGrid columns="2">
 				Language : 
 			 <h:selectOneMenu value="#{localeBean.language}" onchange="submit()">
                 <f:selectItem itemValue="fr" itemLabel="#{messages['french']}" />
                 <f:selectItem itemValue="en" itemLabel="#{messages['english']}" />
             </h:selectOneMenu>
-			</h:panelGrid>
 		</h:form>
     </composite:implementation>
  
