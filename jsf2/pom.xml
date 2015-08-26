@@ -11,8 +11,10 @@
     <name>A custom project developed with jsf2</name>
 
     <properties>
-		<jsf-api.version>2.2.11</jsf-api.version>
-		<jsf-impl.version>2.2.11</jsf-impl.version>
+    	<javaee-web-api.version>6.0</javaee-web-api.version>
+    	<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+		<mojarra-api.version>2.2.11</mojarra-api.version>
+		<mojarra-impl.version>2.2.11</mojarra-impl.version>
 		<myfaces.version>2.2.8</myfaces.version>
 		<jstl.version>1.2</jstl.version>
 		<primefaces.version>5.2</primefaces.version>
@@ -28,6 +30,8 @@
 		<hibernate-jpa-2.0-api.version>1.0.1.Final</hibernate-jpa-2.0-api.version>
 		<hsqldb.version>2.3.2</hsqldb.version>
 		<jetty.version>9.3.0.M2</jetty.version>
+		<jandex.version>1.2.2.Final</jandex.version>
+		<commons-logging.version>1.2</commons-logging.version>
 	</properties>
 
 
@@ -65,13 +69,13 @@
 				<dependency>
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-api</artifactId>
-					<version>${jsf-api.version}</version>
+					<version>${mojarra-api.version}</version>
 					<scope>compile</scope>
 				</dependency>
 				<dependency>
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-impl</artifactId>
-					<version>${jsf-impl.version}</version>
+					<version>${mojarra-impl.version}</version>
 					<scope>compile</scope>
 				</dependency>
 			</dependencies>
@@ -89,7 +93,7 @@
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
-			<version>6.0</version>
+			<version>${javaee-web-api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		  
@@ -97,16 +101,9 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<version>${javax.servlet-api.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<version>3.0.9.Final</version>
-		</dependency>
-		
 		
 		<!-- JSF Dependencies -->
 		
@@ -155,7 +152,7 @@
 		<dependency>
 		    <groupId>org.jboss</groupId>
 		    <artifactId>jandex</artifactId>
-		    <version>1.2.2.Final</version>
+		    <version>${jandex.version}</version>
 		</dependency>
 		
 		<!-- Bean Validation Dependencies -->
@@ -217,7 +214,7 @@
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
+			<version>${commons-logging.version}</version>
 		</dependency>
 		
 	</dependencies>

@@ -1,5 +1,7 @@
 package com.atosworldline.jsf2;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -16,17 +18,21 @@ public class SessionBean {
 		return rootUrl;
 	}
 
-	public void setRootUrl(String rootUrl) {
+	public void setRootUrl(String rootUrl) throws IOException {
 		this.rootUrl = rootUrl;
 		redirect();
 	}
 
-	public String redirect() {
+	public void redirect() throws IOException {
 		String path = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+		boolean isSubContext = path.split("/").length > 2 ? true : false; 
 		String page = path.substring(path.lastIndexOf("/")+1);
-		String redirect = "/"+this.rootUrl+"/"+page+"?faces-redirect=true";
+		String redirect = 
+				FacesContext.getCurrentInstance().getExternalContext().getContextName() + 
+					(isSubContext ? "/" + this.rootUrl : "") + 
+						"/" + page + "?faces-redirect=true";
 		FacesUtil.addSuccessMessage(redirect);
-		return redirect;
+		FacesContext.getCurrentInstance().getExternalContext().redirect(redirect);
 	}
 	
 }
