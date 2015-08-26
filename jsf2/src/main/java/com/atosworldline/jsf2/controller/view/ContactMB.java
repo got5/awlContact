@@ -67,7 +67,12 @@ public class ContactMB implements Serializable{
 	@RequiresPermissions("edit")
 	public String edit() {
 		String value = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-		return "EditContactPage.xhtml?faces-redirect=true&id="+value;
+		return edit(value);
+	}
+	
+	@RequiresPermissions("edit")
+	public String edit(String id) {
+		return "EditContactPage.xhtml?faces-redirect=true&id="+id;
 	}
 	
 	@RequiresPermissions("remove")
