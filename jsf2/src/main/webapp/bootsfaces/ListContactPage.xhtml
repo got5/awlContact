@@ -65,10 +65,8 @@
 							  		</p:cellEditor>
 							  	</p:column>
 							  	<p:column width="25%">
-							  		<b:commandButton action="#{contactMB.edit}" value="#{messages['edit']}" look="primary" size="lg" >
-							  			<f:param name="id" value="#{contact.id}"></f:param>
-							  		</b:commandButton>
-							  	
+							  		<b:commandButton action="#{contactMB.edit(contact.id)}" value="#{messages['edit']}" look="primary" size="lg" />
+
 							  		<b:commandButton ajax="true" value="#{messages['delete']}" look="primary"  onclick="$('.modalPseudoClass').modal();" size="lg">
 							  		  <!-- setting the object's id to delete -->	
 							  		 <f:setPropertyActionListener target="#{deleteContactMB.id}" value="#{contact.id}" />			
