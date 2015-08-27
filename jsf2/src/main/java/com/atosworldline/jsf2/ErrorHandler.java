@@ -19,7 +19,10 @@ public class ErrorHandler {
 			getRequestMap().get("javax.servlet.error.message");
 		if(val!=null && val.contains(org.apache.shiro.authz.UnauthorizedException.class.getSimpleName()))
 			return "Unauthorized action";
-		return "A problem occured : "+getExceptionType();
+		Exception ex = (Exception)FacesContext.getCurrentInstance().getExternalContext().
+		getRequestMap().get("javax.servlet.error.exception");
+		
+		return "A problem occured : "+ex.getCause();
 	}
 
 	public String getExceptionType(){
