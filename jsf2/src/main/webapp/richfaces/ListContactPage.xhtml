@@ -28,7 +28,7 @@
 	       				</f:facet>
 					  	<rich:column>
 					  		<f:facet name="header">#{messages['id']}</f:facet>
-					  	 	<h:outputLabel value="#{contact.id}"></h:outputLabel>
+					  	 	<h:outputLabel value="#{referenceUtil.getIndirectReference(contact.id)}"></h:outputLabel>
 					  	</rich:column>
 					  	<rich:column>
 					  		<f:facet name="header">#{messages['firstname']}</f:facet>
@@ -59,12 +59,12 @@
 					  	
 						  	<a4j:commandLink execute="@this" oncomplete="#{rich:component('confirmPane')}.show()">
 		                    	<h:graphicImage value="/images/delete.gif" alt="delete" />
-		                    	<a4j:param value="#{contact.id}" assignTo="#{deleteContactMB.id}" />
+		                    	<a4j:param value="#{referenceUtil.getIndirectReference(contact.id)}" assignTo="#{deleteContactMB.id}" />
 		                	</a4j:commandLink>
 		                
 		                	<h:commandLink action="#{contactMB.edit}"  >
 		                		<h:graphicImage value="/images/edit.gif" alt="edit" />
-					  			<f:param name="id" value="#{contact.id}"></f:param>
+					  			<f:param name="id" value="#{referenceUtil.getIndirectReference(contact.id)}"></f:param>
 					  		</h:commandLink>
 					  	
 					  	</rich:column>
@@ -76,7 +76,7 @@
 				  
 				  <h:commandButton action="#{contactMB.add}" ajax="false" value="#{messages['add_contact']}" />
 				  
-				   <a4j:jsFunction name="remove" action="#{deleteContactMB.remove}" render="contacts" execute="@this" oncomplete="#{rich:component('confirmPane')}.hide();" />
+				   <a4j:jsFunction name="remove" action="#{contactMB.remove(deleteContactMB.id)}" render="contacts" execute="@this" oncomplete="#{rich:component('confirmPane')}.hide();" />
 				   						  
 				  <rich:popupPanel id="confirmPane" autosized="true">
 		            #{messages['ask_delete_contact']}

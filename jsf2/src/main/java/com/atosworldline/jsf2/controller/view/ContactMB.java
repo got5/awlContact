@@ -4,20 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.owasp.esapi.errors.AccessControlException;
 import org.primefaces.event.CellEditEvent;
 
 import com.atosworldline.jsf2.FacesUtil;
-import com.atosworldline.jsf2.SessionBean;
+import com.atosworldline.jsf2.ReferenceUtil;
 import com.atosworldline.jsf2.model.Contact;
 import com.atosworldline.jsf2.persistence.ContactDAO;
 import com.atosworldline.jsf2.qualifiers.ShiroSecured;
@@ -28,34 +28,30 @@ import com.atosworldline.jsf2.qualifiers.ShiroSecured;
 @RequiresAuthentication
 public class ContactMB implements Serializable{
 
-	private static final long serialVersionUID = -1890125026548028469L;
-	private Contact bean = new Contact();
-	private Long idToDelete;
-	private List<Contact> contacts = new ArrayList<Contact>();
-	private String cid;
+	@Inject
+	private ReferenceUtil referenceUtil;
 	
-	public String getCid() {
-		return cid;
-	}
-
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
-
+	private static final long serialVersionUID = -1890125026548028469L;
+	
+	private Contact bean;
+	
+	private List<Contact> contacts;
+	
 	@Inject
 	private ContactDAO contactDAO;
 	
-	public Contact getBean() {
-		return bean;
+	
+	@PostConstruct
+	private void init(){
+		bean = new Contact();
+		contacts = new ArrayList<Contact>();
 	}
-
-	public void setBean(Contact bean) {
-		this.bean = bean;
-	}
-
+	
+	
 	@RequiresPermissions("edit")
-	public String save() {
+	public String save() throws AccessControlException {
 		contactDAO.persist(this.bean);
+		referenceUtil.addIdToIndirectReference(this.bean.getId());
 		return "ListContactPage.xhtml?faces-redirect=true";
 	}
 
@@ -76,16 +72,10 @@ public class ContactMB implements Serializable{
 	}
 	
 	@RequiresPermissions("remove")
-	public String delete() {
-		String value = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-		contactDAO.delete(Long.valueOf(value));
-		FacesUtil.addSuccessMessage("Deleted!");
-		return "ListContactPage.xhtml?faces-redirect=true";
-	}
-
-	@RequiresPermissions("remove")
-	public void remove() {
-		contactDAO.delete(idToDelete);
+	public void remove(String idToDelete) throws AccessControlException {
+		Long id = referenceUtil.getIdByIndirectReference(idToDelete);
+		contactDAO.delete(id);
+		referenceUtil.removeDirectReference(id);
 		FacesUtil.addSuccessMessage("Deleted!");
 	}
 	
@@ -98,14 +88,6 @@ public class ContactMB implements Serializable{
 		this.contacts = contacts;
 	}
 
-	public Long getIdToDelete() {
-		return idToDelete;
-	}
-
-	public void setIdToDelete(Long idToDelete) {
-		this.idToDelete = idToDelete;
-	}
-	
 	@RequiresPermissions("edit")
 	public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();

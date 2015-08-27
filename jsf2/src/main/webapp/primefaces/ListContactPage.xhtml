@@ -27,7 +27,7 @@
  				    <p:ajax event="cellEdit" listener="#{contactMB.onCellEdit}" />
  				    
 				  	<p:column headerText="#{messages['id']}">
-				  	 	<p:outputLabel value="#{contact.id}"></p:outputLabel>
+				  	 	<p:outputLabel value="#{referenceUtil.getIndirectReference(contact.id)}"></p:outputLabel>
 				  	</p:column>
 				  	<p:column headerText="#{messages['firstname']}">
 				  		<p:cellEditor>
@@ -64,12 +64,12 @@
 				  	<shiro:hasRole name="admin">
 				  		<p:column>
 					  		<p:commandLink action="#{contactMB.edit}" value="#{messages['edit']}" >
-					  			<f:param name="id" value="#{contact.id}"></f:param>
+					  			<f:param name="id" value="#{referenceUtil.getIndirectReference(contact.id)}"></f:param>
 					  		</p:commandLink>
 					  		|
 					  		<p:commandLink oncomplete="PF('confirmation').show()" ajax="true" value="#{messages['delete']}">
 					  		  <!-- setting the object's id to delete -->	
-					  		  <f:setPropertyActionListener target="#{deleteContactMB.id}" value="#{contact.id}" />			
+					  		  <f:setPropertyActionListener target="#{deleteContactMB.id}" value="#{referenceUtil.getIndirectReference(contact.id)}" />			
 					  		</p:commandLink>
 					  	</p:column>
 					 </shiro:hasRole>
@@ -80,7 +80,7 @@
 					  <p:commandButton action="#{contactMB.add}" ajax="false" value="#{messages['add_contact']}"></p:commandButton>
 				 
 				 	  <p:confirmDialog id="confirmDialog" message="#{messages['ask_delete_contact']}" header="#{messages['delete_contact']}" severity="alert" widgetVar="confirmation">
-						<p:commandButton id="confirm" value="#{messages['yes']}" actionListener="#{deleteContactMB.remove}" update="contacts" oncomplete="PF('confirmation').hide()" />
+						<p:commandButton id="confirm" value="#{messages['yes']}" actionListener="#{contactMB.remove(deleteContactMB.id)}" update="contacts" oncomplete="PF('confirmation').hide()" />
 						<p:commandButton id="decline" value="#{messages['no']}" onclick="PF('confirmation').hide()" type="button" />
 					  </p:confirmDialog>
 				  </shiro:hasRole>

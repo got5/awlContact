@@ -32,6 +32,7 @@
 		<jetty.version>9.3.0.M2</jetty.version>
 		<jandex.version>1.2.2.Final</jandex.version>
 		<commons-logging.version>1.2</commons-logging.version>
+		<esapi.version>2.1.0</esapi.version>
 	</properties>
 
 
@@ -216,6 +217,13 @@
 			<artifactId>commons-logging</artifactId>
 			<version>${commons-logging.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.owasp.esapi</groupId>
+			<artifactId>esapi</artifactId>
+			<version>${esapi.version}</version>
+		</dependency>
+		
 		
 	</dependencies>
 

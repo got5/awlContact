@@ -30,7 +30,7 @@
 			 				    <p:ajax event="cellEdit" listener="#{contactMB.onCellEdit}" />
 			 				    
 							  	<p:column headerText="#{messages['id']}" width="10%" >
-							  	 	<p:outputLabel value="#{contact.id}"></p:outputLabel>
+							  	 	<p:outputLabel value="#{referenceUtil.getIndirectReference(contact.id)}"></p:outputLabel>
 							  	</p:column>
 							  	<p:column headerText="#{messages['firstname']}" width="15%" >
 							  		<p:cellEditor>
@@ -65,11 +65,11 @@
 							  		</p:cellEditor>
 							  	</p:column>
 							  	<p:column width="25%">
-							  		<b:commandButton action="#{contactMB.edit(contact.id)}" value="#{messages['edit']}" look="primary" size="lg" />
+							  		<b:commandButton action="#{referenceUtil.getIndirectReference(contact.id)}" value="#{messages['edit']}" look="primary" size="lg" />
 
 							  		<b:commandButton ajax="true" value="#{messages['delete']}" look="primary"  onclick="$('.modalPseudoClass').modal();" size="lg">
 							  		  <!-- setting the object's id to delete -->	
-							  		 <f:setPropertyActionListener target="#{deleteContactMB.id}" value="#{contact.id}" />			
+							  		 <f:setPropertyActionListener target="#{deleteContactMB.id}" value="#{referenceUtil.getIndirectReference(contact.id)}" />			
 							  		</b:commandButton>
 							  	</p:column>
 							  	
@@ -84,7 +84,7 @@
 				  		title="#{messages['delete_contact']}"  
 				  		styleClass="modalPseudoClass">
          			<p>#{messages['ask_delete_contact']}</p>
-					<b:commandButton id="confirm" value="#{messages['yes']}"  actionListener="#{deleteContactMB.remove}" update="contacts" oncomplete="$('.modalPseudoClass').modal('hide');"  look="primary"   />
+					<b:commandButton id="confirm" value="#{messages['yes']}"  actionListener="#{contactMB.remove(deleteContactMB.id)}" update="contacts" oncomplete="$('.modalPseudoClass').modal('hide');"  look="primary"   />
 					<b:commandButton id="decline" value="#{messages['no']}" onclick="$('.modalPseudoClass').modal('hide');" look="primary"   />
 				  </b:modal>
 				  

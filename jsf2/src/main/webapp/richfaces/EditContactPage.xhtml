@@ -18,7 +18,7 @@
 			<ui:define name="content"> 
 				<div id="edition">
 					<h:form>
-							<h:inputHidden value="#{editContactMB.bean.id}" />
+							<h:inputHidden value="#{editContactMB.id}" />
 							
 							<h:panelGrid columns="4">
 								<h:outputLabel value="#{messages['firstname']}" for="name" />
@@ -53,7 +53,7 @@
 						    	
 						    	<f:facet name="footer">
 							    	<a4j:commandButton ajax="false" value="#{messages['save']}" action="#{editContactMB.save}">
-							    		<f:param name="id" value="#{editContactMB.bean.id}"></f:param>
+							    		<f:param name="id" value="#{editContactMB.id}"></f:param>
 							    	</a4j:commandButton>
 							    	<a4j:commandButton ajax="false" value="#{messages['cancel']}" action="#{editContactMB.cancel}"/>
 						    	</f:facet>

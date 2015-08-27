@@ -19,7 +19,7 @@
 			<ui:define name="content"> 
 				<div id="edition">
 					<h:form>
-							<h:inputHidden value="#{editContactMB.bean.id}" />
+							<h:inputHidden value="#{editContactMB.id}" />
 							
 							<h:panelGrid columns="4" cellpadding="5" cellspacing="5">
 								<h:outputLabel value="#{messages['firstname']}" for="name" />
@@ -52,7 +52,7 @@
   										<b:column span="3"/>
 							    		<b:column span="2">
 							    			<b:commandButton ajax="false" value="#{messages['save']}" action="#{editContactMB.save}" look="primary" >
-							    				<f:param name="id" value="#{editContactMB.bean.id}"></f:param>
+							    				<f:param name="id" value="#{editContactMB.id}"></f:param>
 							    			</b:commandButton>
 							    		</b:column>
 							    		<b:column span="2"/>

@@ -11,8 +11,9 @@ import javax.inject.Named;
 
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.owasp.esapi.errors.AccessControlException;
 
+import com.atosworldline.jsf2.ReferenceUtil;
 import com.atosworldline.jsf2.model.Contact;
 import com.atosworldline.jsf2.persistence.ContactDAO;
 import com.atosworldline.jsf2.qualifiers.ShiroSecured;
@@ -20,25 +21,30 @@ import com.atosworldline.jsf2.qualifiers.ShiroSecured;
 @Named
 @RequestScoped
 @ShiroSecured
+@RequiresAuthentication
 public class EditContactMB implements Serializable{
 	
 	private static final long serialVersionUID = 5870423468328215602L;
 	
 	@Inject
 	private ContactDAO contactDAO;
+	
+	@Inject 
+	private ReferenceUtil referenceUtil;
+	
 	private Contact bean;
+	
 	private String id;
 	
 	@PostConstruct
-	public void loadBean() {
+	public void loadBean() throws AccessControlException {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		id = (String) facesContext.getExternalContext().getRequestParameterMap().get("id");
-		try{
-			long longId = Long.valueOf(id);
-			bean = contactDAO.load(longId);
-		}catch(NumberFormatException nfe){
-			//id is never null but can be "null" (String) ! 
+		if(isEmpty(id)) {
 			bean = new Contact();
+		}else{
+			Long longId = referenceUtil.getIdByIndirectReference(id);  
+			bean = contactDAO.load(longId);
 		}
 		setBean(bean);
 	}
@@ -51,15 +57,24 @@ public class EditContactMB implements Serializable{
 		this.bean = bean;
 	}
 	
+	public String getId() throws AccessControlException{
+		return referenceUtil.getIndirectReference(this.bean.getId());
+	}
+	
+	public void setId(String id){
+		this.id = id;
+	}
+	
 	@RequiresPermissions("edit")
-	public String save() {
+	public String save() throws AccessControlException {
 		if(id != null){
 			// update the managed bean
 			contactDAO.persist(getBean());
 		} else {
 			//create or update
-			contactDAO.update(getBean());
+			contactDAO.update(getBean());			
 		}
+		referenceUtil.addIdToIndirectReference(getBean().getId());
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Edited!", "JSF2 rocks!"));
 		return "ListContactPage.xhtml?faces-redirect=true";
 	}
@@ -68,4 +83,7 @@ public class EditContactMB implements Serializable{
 		return "ListContactPage.xhtml?faces-redirect=true";
 	}
 	
+	private boolean isEmpty(String id2) {
+		return null == id || id.length() == 0 || id.equalsIgnoreCase("null");
+	}
 }
