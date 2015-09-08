@@ -48,7 +48,7 @@ public class LoginMB {
             fc.responseComplete();
             HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
             HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
-            String fallbackUrl = "/welcomePage.xhtml";
+            String fallbackUrl = "/WelcomePage.xhtml";
             WebUtils.redirectToSavedRequest(request, response, fallbackUrl);
             return null;
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class LoginMB {
                     null,
                     new FacesMessage("Login Failed: " + e.getMessage(), e
                             .toString()));
-            return "/Login";
+            return "/Login.xhtml";
         }
         
  
@@ -80,7 +80,7 @@ public class LoginMB {
     }
  
     public void setUsername(String username) {
-        this.username = username;
+    	this.username = username;
     }
  
     public String getPassword() {
@@ -88,7 +88,7 @@ public class LoginMB {
     }
  
     public void setPassword(String password) {
-        this.password = password;
+    	this.password = password;
     }
  
     public boolean getRememberMe() {
