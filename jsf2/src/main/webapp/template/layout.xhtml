@@ -67,6 +67,11 @@
 
 		<b:row>
 			<b:column span="18">
+				
+				<shiro:guest>
+					<div id="guest">Please <h:link value="log in" outcome="/Login.xhtml" /> in order to use all the feature provided in this site</div>
+				</shiro:guest>
+							
 				<div id="content">
 					<div id="contacts">
 						<div class="contact">

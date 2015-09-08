@@ -86,6 +86,11 @@ body a:hover {
 	text-align: center;
 }
 
+#guest {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
 #edition {
 	text-align: left;	
 }
