@@ -13,7 +13,6 @@ public class CommaSeparatedConverter implements Converter {
         if (value == null) {
             return null;
         }
-        System.out.println("###################### value 1 : "+value);
         String[] strings = (String[]) value;
         StringBuilder builder = new StringBuilder();
 
@@ -33,7 +32,6 @@ public class CommaSeparatedConverter implements Converter {
         if (value == null) {
             return null;
         }
-System.out.println("###################### value 2 : "+value);
         return value.split(",");
     }
 
