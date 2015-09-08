@@ -13,7 +13,7 @@
 	<h:body> 
 		<ui:composition template="/template/layout.xhtml" >
 			<ui:define name="content">
-				<h:form>
+				<h:form id="loginForm" name="loginForm">
 			        <h:messages />
 			 
 			        <h2>Login Page</h2>
@@ -21,18 +21,18 @@
 			        <p>You can use "user" and "user" to login as a user.</p>
 			        <h:panelGrid columns="3">
 			 
-			            <h:outputLabel for="rememberMe" value="#{messages['username']}" />
+			            <h:outputLabel for="username" value="#{messages['username']}" />
 			            <b:inputText id="username" value="#{loginMB.username}" required="true" />
 			            <h:message for="username" />
 			 
-			            <h:outputLabel for="rememberMe" value="#{messages['password']}" />
+			            <h:outputLabel for="password" value="#{messages['password']}" />
 			            <b:inputSecret id="password" value="#{loginMB.password}"  />
 			            <h:message for="password" />
 			 
 			            <h:outputLabel for="rememberMe" value="#{messages['rememberme']}" />
 			            <b:selectBooleanCheckbox id="rememberMe" value="#{loginMB.rememberMe}" />
 			 
-			            <b:commandButton action="#{loginMB.authenticate()}" value="Login" look="primmary"/>
+			            <b:commandButton id="login" action="#{loginMB.authenticate()}" value="Login" look="primmary"/>
 			 
 			        </h:panelGrid>
 			    </h:form>
