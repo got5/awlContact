@@ -19,7 +19,6 @@ import org.primefaces.context.ApplicationContext;
 import com.atosworldline.jsf2.FacesUtil;
 import com.atosworldline.jsf2.bean.GenericDAO;
 import com.atosworldline.jsf2.controller.view.ContactMB;
-import com.atosworldline.jsf2.converters.SecuredObjectConverter;
 import com.atosworldline.jsf2.filters.AjaxAwareUserFilter;
 import com.atosworldline.jsf2.interceptors.ShiroSecuredInterceptor;
 import com.atosworldline.jsf2.model.Contact;
@@ -53,7 +52,6 @@ public class Deployments {
 				.addPackage(FacesUtil.class.getPackage())
 				.addPackage(GenericDAO.class.getPackage())
 				.addPackage(ContactMB.class.getPackage())
-				.addPackage(SecuredObjectConverter.class.getPackage())
 				.addPackage(AjaxAwareUserFilter.class.getPackage())
 				.addPackage(ShiroSecuredInterceptor.class.getPackage())
 				.addPackage(Contact.class.getPackage())
