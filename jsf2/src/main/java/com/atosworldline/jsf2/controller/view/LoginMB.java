@@ -2,9 +2,10 @@ package com.atosworldline.jsf2.controller.view;
 
 import java.util.logging.Logger;
 
-import javax.enterprise.inject.Model;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +19,8 @@ import org.apache.shiro.web.util.WebUtils;
  *
  * @author Glen Smith
  */
-@Model
+@Named
+@RequestScoped
 public class LoginMB {
  
     String username;
