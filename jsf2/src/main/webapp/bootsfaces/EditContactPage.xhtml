@@ -51,9 +51,11 @@
 							    	<b:row>
   										<b:column span="3"/>
 							    		<b:column span="2">
-							    			<b:commandButton ajax="false" value="#{messages['save']}" action="#{editContactMB.save}" look="primary" >
+							    			<p:commandButton value="#{messages['save']}" action="#{editContactMB.save}">
+							    				<f:passThroughAttribute name="class" value="btn btn-primary" />
 							    				<f:param name="id" value="#{editContactMB.id}"></f:param>
-							    			</b:commandButton>
+							    			</p:commandButton>
+							    			
 							    		</b:column>
 							    		<b:column span="2"/>
 							    		<b:column span="2">

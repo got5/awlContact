@@ -65,6 +65,7 @@ public class EditContactMB implements Serializable{
 		this.id = id;
 	}
 	
+
 	@RequiresPermissions("edit")
 	public String save() throws AccessControlException {
 		if(id != null){
@@ -83,7 +84,7 @@ public class EditContactMB implements Serializable{
 		return "ListContactPage.xhtml?faces-redirect=true";
 	}
 	
-	private boolean isEmpty(String id2) {
-		return null == id || id.length() == 0 || id.equalsIgnoreCase("null");
+	private boolean isEmpty(String value) {
+		return null == value || value.length() == 0 || value.equalsIgnoreCase("null");
 	}
 }
